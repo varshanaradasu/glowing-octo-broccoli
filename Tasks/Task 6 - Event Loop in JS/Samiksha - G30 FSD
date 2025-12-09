@@ -1,0 +1,36 @@
+
+## 1. JavaScript is Single-Threaded
+JavaScript executes one piece of code at a time using a single main thread.
+
+## 2. Synchronous Code Runs in the Call Stack
+All regular code—like variable assignments and function calls—executes immediately inside the call stack.
+
+## 3. Web APIs Enable Asynchronous Behavior
+Functions such as `setTimeout`, `fetch`, and DOM event listeners run outside the call stack through Web APIs.
+
+## 4. Async Callbacks Don’t Enter the Call Stack Directly
+Once Web APIs finish their task, the callback is placed into a queue rather than running immediately.
+
+## 5. Two Types of Queues: Microtask & Macrotask
+- **Microtask Queue:** Promise callbacks, `queueMicrotask`
+- **Macrotask Queue:** `setTimeout`, `setInterval`, DOM event callbacks
+
+## 6. Microtasks Run Before Macrotasks
+When the call stack becomes empty, **all** microtasks execute before any macrotask.
+
+## 7. Event Loop Controls Execution Order
+The event loop checks:
+- If the call stack is empty  
+- Whether microtasks need to run  
+- When to move to the next macrotask
+
+## 8. `setTimeout(..., 0)` Does Not Run Immediately
+Even with zero delay, the callback waits behind microtasks and any previous queued tasks.
+
+## 9. Promises Run Before Timeouts
+Promise resolutions are microtasks, so their callbacks run before macrotask operations such as `setTimeout`.
+
+## 10. Understanding the Event Loop Improves Real-World Coding
+It helps avoid UI freezes, reduces bugs in async code, and makes behavior predictable—important for both development and interviews.
+
+---
